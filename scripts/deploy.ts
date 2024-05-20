@@ -3,7 +3,7 @@ import { Flashloanbot, Flashloanbot__factory } from "../typechain";
 
 async function main() {
 
-  const flashloanProvider = "0xBA12222222228d8Ba445958a75a0704d566BF2C8";
+  const flashloanProvider = "0x4EAF187ad4cE325bF6C84070b51c2f7224A51321";
 
 
   const flashloanbotFactory: Flashloanbot__factory = await ethers.getContractFactory("Flashloanbot") as Flashloanbot__factory;
