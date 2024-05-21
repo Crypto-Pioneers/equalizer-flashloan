@@ -17,6 +17,7 @@ contract Flashloanbot is IERC3156FlashBorrower, Ownable {
     uint256 MAX_INT = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
 
     event executeSuccess(uint256 amountBefore, uint256 amountAfter);
+    event withdrawSuccess(address token, uint256 amount);
 
     constructor(address _flashloanProvider) {
         flashloanProvider = _flashloanProvider;
@@ -37,7 +38,7 @@ contract Flashloanbot is IERC3156FlashBorrower, Ownable {
 
         require(currentBal >= amount, "No profit");
 
-        emit executeSuccess(amount, amountOuts2[0]);
+        emit executeSuccess(amount, amountOuts2[1]);
         return keccak256('ERC3156FlashBorrower.onFlashLoan');
     }
 
@@ -84,5 +85,6 @@ contract Flashloanbot is IERC3156FlashBorrower, Ownable {
         uint256 balance = token.balanceOf(address(this));
         require(balance > 0, "No balance");
         token.transfer(msg.sender, balance);
+        emit withdrawSuccess( _token, balance);
     }
 }
