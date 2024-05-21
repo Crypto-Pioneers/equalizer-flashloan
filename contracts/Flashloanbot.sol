@@ -32,7 +32,7 @@ contract Flashloanbot is IERC3156FlashBorrower, Ownable {
 
         IERC20(token).approve(msg.sender, MAX_INT);
         uint256[] memory amountOuts1 = _swapTokens(address(borrowToken), address(swapToken), amount);
-        uint256[] memory amountOuts2 = _swapTokens(address(swapToken), address(borrowToken), amountOuts1[0]);
+        uint256[] memory amountOuts2 = _swapTokens(address(swapToken), address(borrowToken), amountOuts1[1]);
         uint currentBal = borrowToken.balanceOf(address(this));
 
         require(currentBal >= amount, "No profit");
