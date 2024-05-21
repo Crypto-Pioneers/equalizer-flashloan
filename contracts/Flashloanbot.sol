@@ -82,6 +82,7 @@ contract Flashloanbot is IERC3156FlashBorrower, Ownable {
     ) public onlyOwner {
         IERC20 token = IERC20(_token);
         uint256 balance = token.balanceOf(address(this));
+        require(balance > 0, "No balance");
         token.transfer(msg.sender, balance);
     }
 }
