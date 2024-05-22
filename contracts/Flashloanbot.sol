@@ -36,8 +36,6 @@ contract Flashloanbot is IERC3156FlashBorrower, Ownable {
         uint256[] memory amountOuts2 = _swapTokens(address(swapToken), address(borrowToken), amountOuts1[1]);
         uint currentBal = borrowToken.balanceOf(address(this));
 
-        require(currentBal >= amount, "No profit");
-
         emit executeSuccess(address(borrowToken), amount, amountOuts2[1]);
         return keccak256('ERC3156FlashBorrower.onFlashLoan');
     }
